@@ -20,6 +20,8 @@
 
 5. There are number of dependencies which need to be imported before running the application. Please get the dependenices through the following commands -
 
+    //If go module enable, no need to import below packages
+    
     go get "github.com/go-sql-driver/mysql"
     go get "github.com/go-chi/chi"
 
@@ -32,11 +34,11 @@
     
 ##### Endpoints Description
 
-    Get All Entries
+    Get All Participants
         URL - *http://localhost:9001/meetup/participants*
         Method - GET
 
-    Create Entry
+    Create Participants
         URL - *http://localhost:9001/meetup/participants*
         Method - POST
         Body - (content-type = application/json)
@@ -50,8 +52,8 @@
             "dob" : "1992-07-02T13:45:28Z"
         }
 
-    Update Entry
-        URL - *http://localhost:12345/api/entry*
+    Update Participants
+        URL - *http://localhost:9001/api/entry*
         Method - PUT
         Body - (content-type = application/json)
         {

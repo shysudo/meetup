@@ -13,7 +13,7 @@ import (
 
 var getwg sync.WaitGroup
 
-func getRoutine(c chan []mm.Participant ) {
+func getRoutine(c chan []mm.Participant) {
 	defer getwg.Done()
 	rows, err := mc.DB.Query(`select name, age, dob, profession, locality, number_of_guest, address from participants`)
 	if err != nil {
@@ -53,7 +53,7 @@ func getRoutine(c chan []mm.Participant ) {
 			participant.Address = address.String
 		}
 		if profession.Valid {
-			participant.Profession =  profession.String
+			participant.Profession = profession.String
 		}
 		parti = append(parti, participant)
 	}

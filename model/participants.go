@@ -20,5 +20,5 @@ const (
 
 const (
 	Employed = "Employed"
-	Student = "Student"
+	Student  = "Student"
 )

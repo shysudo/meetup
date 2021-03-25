@@ -8,7 +8,15 @@ import (
 )
 
 func TestUpdateParticipantHandler(t *testing.T) {
-	var jsonStr = []byte(`{"id":11,"first_name":"xyz change","last_name":"pqr","email_address":"xyz@pqr.com","phone_number":"1234567890"}`)
+	var jsonStr = []byte(`{
+        "name" : "Gireesh K H",
+        "age" : 26,
+        "number_of_guest" : 1,
+        "profession" : "Student",
+        "address" : "gireesh kademane bangalore",
+        "locality" : "Bangalore",
+        "dob" : "1992-07-02T13:45:28Z"
+    }`)
 
 	req, err := http.NewRequest("PUT", "/meetup/participants", bytes.NewBuffer(jsonStr))
 	if err != nil {
@@ -22,7 +30,15 @@ func TestUpdateParticipantHandler(t *testing.T) {
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
 	}
-	expected := `{"id":11,"first_name":"xyz change","last_name":"pqr","email_address":"xyz@pqr.com","phone_number":"1234567890"}`
+	expected := `{
+        "name" : "Gireesh K H",
+        "age" : 26,
+        "number_of_guest" : 1,
+        "profession" : "Student",
+        "address" : "gireesh kademane bangalore",
+        "locality" : "Bangalore",
+        "dob" : "1992-07-02T13:45:28Z"
+    }`
 	if rr.Body.String() != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			rr.Body.String(), expected)
