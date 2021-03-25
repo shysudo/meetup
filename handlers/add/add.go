@@ -34,7 +34,12 @@ func RegisterParticipantHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//Add participant
-	common.ValidateParticipant(participant)
+	messages := common.ValidateParticipant(participant)
+	if len(messages) > 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(messages)
+		return
+	}
 	p := make(chan mm.Participant, 30)
 	fmt.Println(participant)
 	addwg.Add(1)

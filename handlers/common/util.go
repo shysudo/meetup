@@ -17,12 +17,15 @@ func Readfromrequest(r *http.Request) (mm.Participant, error) {
 	return participant, nil
 }
 
-func ValidateParticipant(participant mm.Participant) {
+func ValidateParticipant(participant mm.Participant) ([]string) {
+		var messages = []string{}
 		if participant.NumberOfGuest != mm.None || participant.NumberOfGuest != mm.One || participant.NumberOfGuest != mm.Two {
 			fmt.Println("Number of guest should be less than equal to 2")
+			messages = append(messages, "Number of guest should be less than equal to 2")
 		}
 		if participant.Profession != mm.Student || participant.Profession != mm.Employed {
 			fmt.Println("Not a valid Profession")
+			messages = append(messages, "Not a valid Profession")
 		}
-
+	return messages
 }

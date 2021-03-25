@@ -1,6 +1,7 @@
 package update
 
 import (
+	"encoding/json"
 	"fmt"
 	mc "github.com/shysudo/meetup/common"
 	"github.com/shysudo/meetup/handlers/common"
@@ -34,6 +35,12 @@ func UpdateParticipantHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//Add participant
+	messages := common.ValidateParticipant(participant)
+	if len(messages) > 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(messages)
+		return
+	}
 	p := make(chan mm.Participant, 30)
 	fmt.Println(participant)
 	updatewg.Add(1)
